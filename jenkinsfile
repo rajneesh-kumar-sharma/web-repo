@@ -1,1 +1,14 @@
-sh './web.sh'
+pipeline {
+  agent any
+
+  stages {
+        stage('Build') {
+          steps {
+            echo 'Building..'
+            sshagent(['production']) {
+                sh "ssh -o StrictHostKeyChecking=no -l root 127.0.0.1 'cd /home/ubuntu/web-repo && ./web.sh'"
+            }
+         }
+      }
+   }
+}
