@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
           steps {
             echo 'Building..'
-            sshagent(['production']) {
+            sshagent(['ubuntu']) {
                 sh "ssh -o StrictHostKeyChecking=no -l root 127.0.0.1 'cd /home/ubuntu/web-repo && ./web.sh'"
             }
          }
